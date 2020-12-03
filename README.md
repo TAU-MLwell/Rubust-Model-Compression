@@ -1,14 +1,34 @@
 # Robust Model Compression Using Deep Hypotheses 
 
-This repository includes the code for running the experiments presented in the paper 
+This repository contains the code for running the algorithms and experiments presented in the "Robust Model Compression Using Deep Hypotheses" peper.
 
 ## Requirements
-It is required to install Pytorch. 
+It is required to install Pytorch.<br/> 
 To install requirements:
 
 ```setup
 pip install -r requirements.txt
 ```
+
+# Running compression algorithm (CREMBO)
+Running the CREMBO algorithm is done by using the CREMBO class in ```robust_compression.py```. The CREMBO class is initialized with the following: <br/>
+  * create_model: Function that returns the small model (m). create_model(args) -> torch.nn.Module/sklearn model 
+  * train_hypothesis: Training function for training small model (m). train_hypothesis(args, model, M, train_dataloader, test_dataloader, device) -> torch.nn.Module/sklearn         model. Training function for pytorch models must use ```allowed_labels_loss``` as the loss function (see ```examples.py```). 
+  * eval_model: Function for evaluating model on a validation set. eval_model(model, val_dataloader, device) -> float
+  * args: Optional arguments for create_model and train_hypothesis methods. 
+  * delta: Step size in CREMBO
+
+<br/>
+After the initialization of the CREMBO class, running the CREMBO algorithm is simply done by calling it with the large model M, training, test and validation loaders (DataLoader for pytorch models or (x,y) tuples for sklearn models) and device to run on (cpu/cuda).
+
+```
+ # initiate CREMBO class
+ crembo = CREMBO(create_model_func, train_hypothesis_func, eval_model_func, args)
+
+ # run crembo
+ f = crembo(M, train_loader, test_loader, valid_loader, device)
+```
+In ```examples.py``` there are detailed examples on how to run CREMBO on DNN to DNN compression using Pytorch models (including training functions) and how to run CREMBO on sklearn models as well.
 
 # Running experiments
 ## Compressing to Interpretable Models
@@ -49,7 +69,7 @@ To run the experiments presented in the paper you need to use the 'dnn2dnn_compr
 -model_name - The type of model to train for 'train' experiments or the type of model to compress to for 'compress' and 'kd' experiments. (lenet/mobilenetv2/resnet18/VGG16) <br/>
 <br/>
 For 'compress' and 'kd' experiments you also need to provide
--large_model - The type of large model used for compression. Either resnet18 or VGG16 our avilable. The pretrained large models are provided in 'outputs/models' <br/>
+-large_model, the type of large model used for compression. Either resnet18 or VGG16 our avilable. The pretrained large models are provided in 'outputs/models' <br/>
 <br/>
 Other optional parameters are:<br/>
 -temperature(int) - Temperature for kd experiments<br/>
