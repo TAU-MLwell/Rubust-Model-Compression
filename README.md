@@ -1,6 +1,6 @@
 # Robust Model Compression Using Deep Hypotheses 
 
-This repository contains the code for running the algorithms and experiments presented in the "Robust Model Compression Using Deep Hypotheses" peper.
+This repository contains the code for running the algorithms and experiments presented in the "Robust Model Compression Using Deep Hypotheses" paper.
 
 ## Requirements
 It is required to install Pytorch.<br/> 
@@ -19,7 +19,7 @@ Running the CREMBO algorithm is done by using the CREMBO class in ```robust_comp
   * delta: Step size in CREMBO
 
 <br/>
-After the initialization of the CREMBO class, running the CREMBO algorithm is simply done by calling it with the large model M, training, test and validation loaders (DataLoader for pytorch models or (x,y) tuples for sklearn models) and device to run on (cpu/cuda).
+After the initialization of the CREMBO class, running the CREMBO algorithm is simply done by calling it with the large model M, training, test and validation loaders (DataLoader for PyTorch models or (x,y) tuples for sklearn models) and device to run on (cpu/cuda).
 
 ```
  # initiate CREMBO class
@@ -32,7 +32,7 @@ In ```examples.py``` there are detailed examples on how to run CREMBO on DNN to 
 
 # Running experiments
 ## Compressing to Interpretable Models
-To run the experiments presented in the paper, you need to use the 'run.py' file and provide the required parameters:<br/>
+To run the experiments for compressing to interpretable models presented in the paper, use the 'run.py' file and provide the required parameters:<br/>
 -model rf/nn      describing which model you wish to compress<br/>
 -experiment_name  generalization/robustness describing which experiment to run<br/>
 -dataset_name heart/dermatology/arrhythmia/breast_cancer/iris describing which dataset to use<br/>
@@ -44,17 +44,16 @@ There are also optional parameters<br/>
 -rf_depth (default 12) the depth of trees in random forest<br/>
 -rf_trees (default 100) number of trees in random forest<br/>
 
-To train the experiments, use the 'run.py', for example::
+To run the experiments, use the 'run.py', for example::
 
-```train
+```run
 python run.py -model rf -experiment_name generalization -dataset_name heart
 ```
 
-After the experiment is finished the results will be printed to the console
-
+After the experiment is completed, the results will be printed to the console.
 
 Datasets:<br/>
-Datasets are provided here but they originate from the UCI repository  
+Datasets are provided here. They are taken from the UCI repository  
 Heart (cleveland: https://archive.ics.uci.edu/ml/datasets/Heart+Disease  
 Dermatology: https://archive.ics.uci.edu/ml/datasets/Dermatology  
 Arrythmia: https://archive.ics.uci.edu/ml/datasets/Arrhythmia  
@@ -62,14 +61,14 @@ Breast_cancer: https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%
 Iris: https://archive.ics.uci.edu/ml/datasets/Iris  
 
 ## DNN to DNN Compression
-To run the experiments presented in the paper you need to use the 'dnn2dnn_compression.py' file and provide the required parameters:<br/>
+To run the experiments for DNN to DNN compression presented in the paper, use the 'dnn2dnn_compression.py' file and provide the required parameters:<br/>
 -dataset_name - Only cifar10 is currently supported.<br/>
 -experiment - Type of experiment: train/compress (CREMBO)/kd<br/>
 -experiment_name -  Name of experiment (used for saving models)<br/> 
 -model_name - The type of model to train for 'train' experiments or the type of model to compress to for 'compress' and 'kd' experiments. (lenet/mobilenetv2/resnet18/VGG16) <br/>
 <br/>
 For 'compress' and 'kd' experiments you also need to provide
--large_model, the type of large model used for compression. Either resnet18 or VGG16 our avilable. The pretrained large models are provided in 'outputs/models' <br/>
+-large_model, the type of large model used for compression. Either resnet18 or VGG16 our available. The pretrained large models are provided in 'outputs/models' <br/>
 <br/>
 Other optional parameters are:<br/>
 -temperature(int) - Temperature for kd experiments<br/>
