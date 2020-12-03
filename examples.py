@@ -13,7 +13,7 @@ from utils import calc_allowed_labels
 
 def crembo_dnn2dnn_example():
     # set device
-    device = 'cuda:2'
+    device = 'cuda'
 
     # set arguments
     args = {
@@ -194,5 +194,7 @@ def eval_sklearn(model, loader, device=None):
     score = model.score(X, y)
     return score
 
-crembo_sklearn_example()
-# crembo_dnn2dnn_example()
+
+if __name__ == '__main__':
+    crembo_sklearn_example()
+    # crembo_dnn2dnn_example()

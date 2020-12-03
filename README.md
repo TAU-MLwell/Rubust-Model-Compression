@@ -3,7 +3,7 @@
 This repository contains the code for running the algorithms and experiments presented in the "Robust Model Compression Using Deep Hypotheses" paper.
 
 ## Requirements
-It is required to install Pytorch.<br/> 
+It is required to first install [PyTorch](https://pytorch.org/get-started/locally/).<br/> 
 To install requirements:
 
 ```setup
