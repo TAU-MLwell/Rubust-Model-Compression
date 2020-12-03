@@ -12,9 +12,9 @@ pip install -r requirements.txt
 
 # Running compression algorithm (CREMBO)
 Running the CREMBO algorithm is done by using the CREMBO class in ```robust_compression.py```. The CREMBO class is initialized with the following: <br/>
-  * create_model: Function that returns the small model (m). create_model(args) -> torch.nn.Module/sklearn model 
-  * train_hypothesis: Training function for training small model (m). train_hypothesis(args, model, M, train_dataloader, test_dataloader, device) -> torch.nn.Module/sklearn         model. Training function for pytorch models must use ```allowed_labels_loss``` as the loss function (see ```examples.py```). 
-  * eval_model: Function for evaluating model on a validation set. eval_model(model, val_dataloader, device) -> float
+  * create_model: Function that returns the small model (m). ```create_model(args) -> torch.nn.Module/sklearn model``` 
+  * train_hypothesis: Training function for training small model (m). ```train_hypothesis(args, model, M, train_dataloader, test_dataloader, device) -> torch.nn.Module/sklearn         model```. Training function for pytorch models must use ```allowed_labels_loss``` as the loss function (see ```examples.py```). 
+  * eval_model: Function for evaluating model on a validation set. ```eval_model(model, val_dataloader, device) -> float```
   * args: Optional arguments for create_model and train_hypothesis methods. 
   * delta: Step size in CREMBO
 
